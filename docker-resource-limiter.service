@@ -1,0 +1,11 @@
+Unit]
+Description=Docker Resource Limiter Service
+After=docker.service
+
+[Service]
+ExecStart=/usr/bin/docker-resource-limiter  # Use the entry point
+Restart=always
+User=root
+
+[Install]
+WantedBy=multi-user.target
