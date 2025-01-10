@@ -14,5 +14,9 @@ setup(
     },
     data_files=[
         ('/etc/docker-resource-limiter', ['config.ini'])
-    ]
+    ],
+    test_suite='tests',
+    # Add the following line to include your package data
+    package_data={'docker_resource_limiter': ['*.py']},
+    zip_safe=False  # This is generally needed when using package_data
 )
