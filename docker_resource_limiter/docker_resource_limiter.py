@@ -34,11 +34,11 @@ def limit_container_resources(container):
         )
         print(f"Limited resources for container: {container.name}")
     except Exception as e:
-        print(f"Error limiting resources for container {container.name}: {e}")
+        print(f"Error limiting resources for " f"container {container.name}: {e}")
 
 
 def monitor_docker_events():
-    """Monitors Docker events and limits resources for specific containers."""
+    """Monitors Docker events and limits resources."""
     for event in client.events(decode=True):
         if event["Type"] == "container" and event["Action"] == "create":
             container_name = event["Actor"]["Attributes"]["name"]
