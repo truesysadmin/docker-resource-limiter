@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 setup(
     name='docker-resource-limiter',
     version='0.1.0',
-    packages=find_packages(include=['docker_resource_limiter']),
+    packages=find_packages(include=['docker_resource_limiter', 'tests']),
     test_suite='tests',
     install_requires=['docker'],
     entry_points={
