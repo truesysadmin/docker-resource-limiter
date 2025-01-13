@@ -52,7 +52,7 @@ jobs:
       - name: Install deb dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install build-essential python3-setuptools python3-all debhelper python3-stdeb fakeroot python-all
+          sudo apt-get install build-essential python3-setuptools python3-all debhelper python3-stdeb fakeroot
 
       - name: Build package
         run: python3 setup.py --command-packages=stdeb.command bdist_deb
