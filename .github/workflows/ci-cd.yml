@@ -55,7 +55,7 @@ jobs:
           sudo apt-get install build-essential python3-setuptools python3-all debhelper
 
       - name: Build package
-        run: python3 setup.py bdist_deb
+        run: python3 setup.py --command-packages=stdeb.command bdist_deb
 
       - name: Create Release
         id: create_release
