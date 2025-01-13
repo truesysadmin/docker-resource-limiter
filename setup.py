@@ -6,7 +6,7 @@ setup(
     packages=find_packages(),
     install_requires=[
         'docker',
-        'configparser',
+        'toml',
         'stdeb; python_version<"3.0"',  # For older Python versions
     ],
     entry_points={
