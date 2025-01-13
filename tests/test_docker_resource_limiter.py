@@ -20,17 +20,17 @@ def mocker():
 
 
 def test_get_config_path_current_directory(tmp_path):
-    """Test get_config_path() when config.ini is in current directory."""
-    config_file = tmp_path / 'config.ini'
+    """Test get_config_path() when config.toml is in current directory."""
+    config_file = tmp_path / 'config.toml'
     config_file.write_text('[Settings]\nkeywords = test')
     os.chdir(tmp_path)
-    assert get_config_path() == 'config.ini'
+    assert get_config_path() == 'config.toml'
 
 
 def test_get_config_path_default_path(tmp_path, monkeypatch):
-    """Test get_config_path() when config.ini is not found."""
+    """Test get_config_path() when config.toml is not found."""
     monkeypatch.setattr(os.path, 'exists', lambda path: False)
-    assert get_config_path() == '/etc/docker-resource-limiter/config.ini'
+    assert get_config_path() == '/etc/docker-resource-limiter/config.toml'
 
 
 def test_limit_container_resources(mocker):
