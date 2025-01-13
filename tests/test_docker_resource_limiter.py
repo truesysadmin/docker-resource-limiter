@@ -1,18 +1,21 @@
 import os
 
-from docker_resource_limiter.docker_resource_limiter import   get_config_path, limit_container_resources,  cpus,  mem_limit
+from docker_resource_limiter import (
+    get_config_path,
+    limit_container_resources,
+    cpus,
+    mem_limit
+)
 
 import pytest
 
-# ... your other imports ...
 
 @pytest.fixture
 def mocker():
-    """Provides a mocker object for mocking."""
     try:
-        from unittest import mock  # Python 3.3+
+        from unittest import mock
     except ImportError:
-        import mock  # Use the 'mock' package for older Python versions
+        import mock
     return mock.Mock()
 
 
