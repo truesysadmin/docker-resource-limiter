@@ -19,7 +19,8 @@ setup(
         ('/etc/docker-resource-limiter', ['config.ini'])
     ],
     package_data={'docker_resource_limiter': ['*.py']},
-    description="A tool to monitor Docker events and limit container resources",
+    description="A tool to monitor Docker events and limit "
+                "resources for specific containers",
     long_description="""
     This application monitors Docker events and automatically limits
     resources (CPU and memory) for containers with specific names.
