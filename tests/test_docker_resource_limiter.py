@@ -1,6 +1,6 @@
 import os
 
-from docker_resource_limiter import (
+from docker_resource_limiter.docker_resource_limiter import (
     get_config_path,
     limit_container_resources,
     cpus,
