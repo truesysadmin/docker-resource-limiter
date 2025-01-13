@@ -16,7 +16,7 @@ setup(
         ]
     },
     data_files=[
-        ('/etc/docker-resource-limiter', ['config.ini'])
+        ('/etc/docker-resource-limiter', ['config.toml'])
     ],
     package_data={'docker_resource_limiter': ['*.py']},
     description="A tool to monitor Docker events and limit "
