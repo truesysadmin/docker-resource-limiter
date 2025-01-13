@@ -34,7 +34,7 @@ jobs:
     needs: test-and-lint
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # Grant permission to create releases
+      contents: write
     if: startsWith(github.ref, 'refs/tags/v')
     steps:
       - name: Checkout code
