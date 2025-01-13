@@ -1,29 +1,26 @@
-# import configparser
-from backports import configparser
 import docker
 import os
 import time
+import toml
 
 
 def get_config_path():
     """Returns the path to the configuration file."""
-    if os.path.exists('config.ini'):
-        return 'config.ini'
-    return '/etc/docker-resource-limiter/config.ini'
+    if os.path.exists('config.toml'):
+        return 'config.toml'
+    return '/etc/docker-resource-limiter/config.toml'
 
 
-# Load configuration from INI file
-config = configparser.ConfigParser()
+# Load configuration from TOML file
 config_path = get_config_path()
-config.read(config_path)
+with open(config_path, 'r') as f:
+    config = toml.load(f)
 
-# Get configuration values
-keywords = config.get(
-    'Settings', 'keywords',
-    fallback='limit_resources,test,special'
-).split(',')
-cpus = config.getfloat('Settings', 'cpus', fallback=0.5)
-mem_limit = config.get('Settings', 'mem_limit', fallback='100m')
+# Access configuration values
+settings = config.get('settings', {})
+keywords = settings.get('keywords', '').split(',')
+cpus = settings.get('cpus', 0.5)
+mem_limit = settings.get('mem_limit', '100m')
 
 client = docker.from_env()
 
@@ -38,8 +35,7 @@ def limit_container_resources(container):
         )
         print(f"Limited resources for container: {container.name}")
     except Exception as e:
-        print(f"Error limiting resources for "
-              f"container {container.name}: {e}")
+        print(f"Error limiting resources for container {container.name}: {e}")
 
 
 def monitor_docker_events():
@@ -57,10 +53,14 @@ def monitor_docker_events():
                     print(f"Error getting container: {e}")
 
 
-if __name__ == "__main__":
+def main():
     while True:
         try:
             monitor_docker_events()
         except Exception as e:
             print(f"Error in monitor_docker_events: {e}")
         time.sleep(5)
+
+
+if __name__ == "__main__":
+    main()
