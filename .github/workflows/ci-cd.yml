@@ -47,12 +47,12 @@ jobs:
       - name: Install dependencies
         run: |
           python3 -m pip install --upgrade pip
-          pip install flake8 pytest docker toml setuptools wheel stdeb
+          pip install flake8 pytest docker toml setuptools wheel
 
       - name: Install deb dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install build-essential python3-setuptools python3-all debhelper
+          sudo apt-get install build-essential python3-setuptools python3-all debhelper python3-stdeb fakeroot python-all
 
       - name: Build package
         run: python3 setup.py --command-packages=stdeb.command bdist_deb
