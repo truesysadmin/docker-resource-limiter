@@ -23,7 +23,7 @@ jobs:
       - name: Install dependencies
         run: |
           python3 -m pip install --upgrade pip
-          pip install flake8 pytest docker
+          pip install flake8 pytest docker toml
 
       - name: Run linter
         run: flake8 . --count --show-source --statistics
