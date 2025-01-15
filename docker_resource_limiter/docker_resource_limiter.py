@@ -28,10 +28,14 @@ client = docker.from_env()
 def limit_container_resources(container):
     """Applies resource limits to the given container."""
     try:
+        # Calculate memswap_limit based on mem_limit
+        memswap_limit = int(mem_limit[:-1]) * 1024 * 1024 * 2  # Double the mem_limit
+
         container.update(
             cpu_period=100000,
             cpu_quota=int(cpus * 100000),
-            mem_limit=mem_limit
+            mem_limit=mem_limit,
+            memswap_limit=memswap_limit  # Set memswap_limit
         )
         print(f"Limited resources for container: {container.name}")
     except Exception as e:
