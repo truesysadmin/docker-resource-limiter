@@ -45,7 +45,7 @@ def limit_container_resources(container):
 def monitor_docker_events():
     """Monitors Docker events and limits resources."""
     for event in client.events(decode=True):
-        if event['Type'] == 'container' and event['Action'] == 'create':
+        if event['Type'] == 'container' and event['Action'] in ('create', 'start', 'restart'):
             container_name = event['Actor']['Attributes']['name']
             if any(keyword in container_name for keyword in keywords):
                 try:
