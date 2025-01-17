@@ -1,4 +1,0 @@
-[settings]
-keywords = "limit_resources,test,special"
-cpus = 0.1
-mem_limit = "100m"

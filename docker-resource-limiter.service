@@ -1,11 +1,12 @@
-Unit]
+[Unit]
 Description=Docker Resource Limiter Service
 After=docker.service
 
 [Service]
-ExecStart=/usr/bin/docker-resource-limiter  # Use the entry point
+ExecStart=/opt/docker-resource-limiter/bin/python3 /usr/local/bin/docker_resource_limiter.py
 Restart=always
 User=root
+StandardOutput=journal
 
 [Install]
 WantedBy=multi-user.target
